@@ -1,0 +1,19 @@
+#!/bin/bash
+mkdir -p ~/.ssh
+mv ~/id_rsa.pub ~/.ssh/authorized_keys
+
+# Some git repositories I tend to use
+clone() {
+  for r; do
+    git clone git://github.com/spencertipping/$r ~/r/initiative/$r
+  done
+}
+
+mkdir -p ~/r/initiative
+clone bashrc-tmux bash-hats bash-lambda bash-prompt cd \
+      dotfiles nfu perl-objects
+
+# Initialize dotfiles
+for file in ~/r/initiative/dotfiles/*; do
+  ln -s $file ~/.$file
+done
