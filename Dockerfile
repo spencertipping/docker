@@ -1,21 +1,20 @@
 FROM ubuntu:15.10
+ARG user=spencertipping
 
-EXPOSE 22
+RUN apt-get update \
+    && apt-get install -y tmux xpra htop git openssh-server \
+                          sshfs archivemount encfs \
+                          gnuplot octave chromium-browser \
+                          libterm-readline-gnu-perl
 
-RUN apt-get update
-RUN apt-get install -y tmux xpra htop git openssh-server \
-                       sshfs archivemount encfs \
-                       gnuplot octave chromium-browser \
-                       libterm-readline-gnu-perl
+RUN useradd -ms /bin/bash $user -G adm,sudo
 
-RUN useradd -ms /bin/bash spencertipping -G adm,sudo
+USER $user
+WORKDIR /home/$user
 
-USER spencertipping
-WORKDIR /home/spencertipping
-
-ADD id_rsa.pub ./
-ADD user-setup ./
-
+ADD id_rsa.pub user-setup ./
 RUN ./user-setup
 
+EXPOSE 22
+VOLUME /mnt
 CMD ["/bin/bash"]
