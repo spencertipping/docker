@@ -15,5 +15,5 @@ clone bashrc-tmux bash-hats bash-lambda bash-prompt cd \
 
 # Initialize dotfiles
 for file in ~/r/initiative/dotfiles/*; do
-  ln -s $file ~/.$file
+  ln -s $file ~/.${file##*/}
 done
