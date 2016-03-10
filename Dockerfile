@@ -20,6 +20,7 @@ RUN apt-get install -y tmux xpra htop atop git openssh-server \
                        build-essential
 
 RUN useradd -ms /bin/bash $user -G adm,sudo
+RUN mkdir /var/run/sshd
 
 USER $user
 WORKDIR /home/$user
