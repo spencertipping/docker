@@ -1,7 +1,8 @@
 FROM ubuntu:15.10
 ENV user=spencertipping
 
-RUN apt-get update \
+RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
+    && apt-get update \
     && apt-get install -y tmux xpra htop atop git openssh-server \
                           gnuplot octave ruby python3 \
                           sshfs archivemount encfs \
