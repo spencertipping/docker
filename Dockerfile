@@ -12,6 +12,7 @@ ADD etc-keyboard /etc/default/keyboard
 # elegant solution, but otherwise it takes a long time to test.
 RUN apt-get install -y tmux xpra htop atop git openssh-server \
                        gnuplot octave ruby python3 perl pdl jq r-base \
+                       lzop \
                        randomize-lines \
                        sshfs archivemount encfs \
                        pv reptyr rlwrap units \
