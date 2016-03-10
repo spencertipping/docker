@@ -30,4 +30,7 @@ RUN ./user-setup
 
 EXPOSE 22
 VOLUME /mnt
+
+USER root
+WORKDIR /
 CMD ["/usr/sbin/sshd", "-D"]
