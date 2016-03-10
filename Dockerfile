@@ -19,8 +19,8 @@ RUN apt-get install -y tmux xpra htop atop git openssh-server \
                        vim emacs conky chromium-browser \
                        build-essential
 
-RUN useradd -ms /bin/bash $user -G adm,sudo
-RUN mkdir /var/run/sshd
+RUN useradd -ms /bin/bash $user -G adm,sudo \
+    && echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config \
 
 USER $user
 WORKDIR /home/$user
