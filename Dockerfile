@@ -6,9 +6,8 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && apt-get install -y tmux xpra htop atop git openssh-server \
                           gnuplot octave ruby python3 \
                           sshfs archivemount encfs \
-                          vim \
-                          avconv audacity gimp \
-                          ngspice \
+                          audacity gimp \
+                          vim emacs \
                           build-essential
 
 RUN useradd -ms /bin/bash $user -G adm,sudo
