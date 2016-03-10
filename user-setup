@@ -11,7 +11,7 @@ clone() {
 
 mkdir -p ~/r/initiative
 clone bashrc-tmux bash-hats bash-lambda bash-prompt cd \
-      dotfiles nfu perl-objects
+      dotfiles nfu ni perl-objects
 
 # Initialize dotfiles
 rm ~/.bashrc
