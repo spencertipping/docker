@@ -23,10 +23,12 @@ RUN useradd -ms /bin/bash $user -G adm,sudo \
     && echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config \
     && mkdir /var/run/sshd
 
+ADD id_rsa.pub user-setup /home/$user
+RUN chown $user:$user /home/$user/id_rsa.pub \
+    && chmod 0700 /home/$user/id_rsa.pub
+
 USER $user
 WORKDIR /home/$user
-
-ADD id_rsa.pub user-setup ./
 RUN ./user-setup
 
 EXPOSE 22
