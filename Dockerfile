@@ -21,6 +21,7 @@ RUN apt-get install -y tmux xpra htop atop git openssh-server \
 
 RUN useradd -ms /bin/bash $user -G adm,sudo \
     && echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config \
+    && mkdir /var/run/sshd
 
 USER $user
 WORKDIR /home/$user
