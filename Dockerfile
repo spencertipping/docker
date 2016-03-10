@@ -3,8 +3,12 @@ ENV user=spencertipping
 
 RUN apt-get update \
     && apt-get install -y tmux xpra htop atop git openssh-server \
+                          gnuplot octave ruby python3 \
                           sshfs archivemount encfs \
-                          libterm-readline-gnu-perl
+                          vim \
+                          avconv audacity gimp \
+                          ngspice \
+                          build-essential
 
 RUN useradd -ms /bin/bash $user -G adm,sudo
 
