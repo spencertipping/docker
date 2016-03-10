@@ -6,7 +6,7 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
 
 # Prevent the keyboard-configuration package setup from blocking the apt-get
 # install below
-ADD /etc/default/keyboard /etc/default/keyboard
+ADD etc-keyboard /etc/default/keyboard
 
 # This is a separate command so the above image can be cached. Not the most
 # elegant solution, but otherwise it takes a long time to test.
