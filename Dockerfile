@@ -1,10 +1,9 @@
 FROM ubuntu:15.10
-ARG user=spencertipping
+ENV user=spencertipping
 
 RUN apt-get update \
-    && apt-get install -y tmux xpra htop git openssh-server \
+    && apt-get install -y tmux xpra htop atop git openssh-server \
                           sshfs archivemount encfs \
-                          gnuplot octave chromium-browser \
                           libterm-readline-gnu-perl
 
 RUN useradd -ms /bin/bash $user -G adm,sudo
