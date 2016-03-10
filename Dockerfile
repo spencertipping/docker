@@ -7,10 +7,12 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
 # This is a separate command so the above image can be cached. Not the most
 # elegant solution, but otherwise it takes a long time to test.
 RUN apt-get install -y tmux xpra htop atop git openssh-server \
-                       gnuplot octave ruby python3 \
+                       gnuplot octave ruby python3 perl pdl jq r-base \
+                       randomize-lines \
                        sshfs archivemount encfs \
-                       audacity gimp \
-                       vim emacs \
+                       pv reptyr rlwrap units \
+                       ffmpeg audacity gimp \
+                       vim emacs conky \
                        build-essential
 
 RUN useradd -ms /bin/bash $user -G adm,sudo
