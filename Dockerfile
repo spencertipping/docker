@@ -29,4 +29,4 @@ RUN ./user-setup
 
 EXPOSE 22
 VOLUME /mnt
-CMD ["/usr/bin/sshd", "-D"]
+CMD ["/usr/sbin/sshd", "-D"]
