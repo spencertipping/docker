@@ -1,5 +1,4 @@
 FROM ubuntu:15.10
-ENV user=spencertipping
 
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && apt-get update
@@ -21,6 +20,7 @@ RUN apt-get install -y tmux xpra htop atop git openssh-server \
 
 RUN apt-get install -y lzop sudo zip unzip liblz4-tool gnuplot5-qt
 
+ENV user=spencertipping
 RUN useradd -ms /bin/bash $user -G adm,sudo \
     && echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config \
     && echo "%sudo ALL=NOPASSWD: ALL" >> /etc/sudoers \
