@@ -6,7 +6,7 @@ machines remotely, so this image just runs an SSH server and headless xpra.
 Usage:
 
 ```sh
-$ cp ~/.ssh/id_rsa.pub .        # this key will be authorized to ssh in
+$ cp ~/.ssh/id_rsa.pub authorized_keys
 $ vim Dockerfile                # change ENV user= to your username
 $ sudo docker build -t me .
 $ sudo docker run -p 2222:22 -v /mnt:/some/path -d me

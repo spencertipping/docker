@@ -27,9 +27,9 @@ RUN useradd -ms /bin/bash $user -G adm,sudo \
     && echo "%sudo ALL=NOPASSWD: ALL" >> /etc/sudoers \
     && mkdir /var/run/sshd
 
-ADD id_rsa.pub user-setup /home/$user/
-RUN chown $user:$user /home/$user/id_rsa.pub \
-    && chmod 0700 /home/$user/id_rsa.pub
+ADD authorized_keys user-setup /home/$user/
+RUN chown $user:$user /home/$user/authorized_keys \
+    && chmod 0700 /home/$user/authorized_keys
 
 USER $user
 WORKDIR /home/$user

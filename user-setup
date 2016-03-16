@@ -1,6 +1,6 @@
 #!/bin/bash
 mkdir -p ~/.ssh
-mv ~/id_rsa.pub ~/.ssh/authorized_keys
+mv ~/authorized_keys ~/.ssh/
 
 # Some git repositories I tend to use
 clone() {
