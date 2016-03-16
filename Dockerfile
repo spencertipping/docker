@@ -19,7 +19,11 @@ RUN apt-get install -y tmux xpra htop atop git openssh-server \
                        build-essential
 
 RUN apt-get install -y lzop sudo zip unzip liblz4-tool gnuplot5-qt curl \
-                       wamerican parallel openvpn nfs-common
+                       wamerican parallel openvpn nfs-common \
+                       python3-pip
+
+RUN pip3 install --upgrade \
+    https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.7.1-cp34-none-linux_x86_64.whl
 
 ENV user=spencertipping
 RUN useradd -ms /bin/bash $user -G adm,sudo \
