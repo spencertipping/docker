@@ -19,7 +19,7 @@ RUN apt-get install -y tmux xpra htop atop git openssh-server \
                        build-essential
 
 RUN apt-get install -y lzop sudo zip unzip liblz4-tool gnuplot5-qt curl \
-                       wamerican parallel
+                       wamerican parallel openvpn
 
 ENV user=spencertipping
 RUN useradd -ms /bin/bash $user -G adm,sudo \
