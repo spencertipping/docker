@@ -18,9 +18,10 @@ RUN apt-get install -y tmux xpra htop atop git openssh-server \
                        vim emacs conky chromium-browser \
                        build-essential
 
-RUN sh -c 'apt-get install -y lzop sudo zip unzip liblz4-tool gnuplot5-qt curl \
-                              wamerican parallel openvpn nfs-common \
-                              python{,3}-{pip,scipy,sklearn,numexpr}'
+RUN bash -c \
+    'apt-get install -y lzop sudo zip unzip liblz4-tool gnuplot5-qt curl \
+                        wamerican parallel openvpn nfs-common \
+                        python{,3}-{pip,scipy,sklearn,numexpr}'
 
 RUN pip3 install --upgrade \
     https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.7.1-cp34-none-linux_x86_64.whl
