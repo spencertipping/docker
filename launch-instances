@@ -1,0 +1,13 @@
+#!/bin/bash
+# Builds and launches four instances I use for various things.
+
+docker build -t spencertipping/machine .
+
+# We need --privileged for sshfs and other FUSE mountpoints to work. Otherwise
+# we get operation-not-permitted errors when trying to open /dev/fuse.
+for i in `seq 4`; do
+  docker run -d -p $((2021 + i)):22 -v /mnt:/mnt \
+         --privileged \
+         --hostname $(hostname)$i --name st$i \
+         spencertipping/machine
+done
