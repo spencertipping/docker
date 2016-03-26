@@ -22,7 +22,7 @@ RUN bash -c \
     'apt-get install -y lzop sudo zip unzip liblz4-tool gnuplot5-qt curl \
                         wamerican parallel openvpn nfs-common \
                         python{,3}-{pip,scipy,numexpr} python-sklearn \
-                        lftp maven'
+                        lftp maven blender'
 
 RUN pip3 install --upgrade \
     https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.7.1-cp34-none-linux_x86_64.whl
