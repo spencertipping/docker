@@ -25,7 +25,8 @@ RUN bash -c \
                         lftp maven blender'
 
 RUN apt-get install -y thrift-compiler python-thrift \
-                       protobuf-compiler python-protobuf
+                       protobuf-compiler python-protobuf \
+                       lsof
 
 RUN pip3 install --upgrade \
     https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.7.1-cp34-none-linux_x86_64.whl
