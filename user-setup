@@ -18,7 +18,7 @@ git clone git://github.com/syl20bnr/spacemacs.git ~/.emacs.d
 # Initialize dotfiles
 rm ~/.bashrc
 for file in ~/r/initiative/dotfiles/*; do
-  ln -s $file ~/.${file##*/}
+  ln -s ${file#$HOME/} ~/.${file##*/}
 done
 
 # Create a bin dir, just for good measure
