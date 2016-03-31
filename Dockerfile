@@ -15,7 +15,7 @@ RUN apt-get install -y tmux xpra htop atop git openssh-server \
                        sshfs archivemount encfs \
                        pv reptyr rlwrap units \
                        ffmpeg audacity gimp \
-                       vim emacs conky chromium-browser \
+                       vim emacs conky firefox \
                        build-essential
 
 RUN bash -c \
