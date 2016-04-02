@@ -27,8 +27,9 @@ RUN apt-get install -y thrift-compiler python-thrift \
                        protobuf-compiler python-protobuf \
                        lsof squashfs-tools aufs-tools
 
-RUN pip3 install --upgrade \
-    https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.7.1-cp34-none-linux_x86_64.whl
+# This fails to install on 16.04
+#RUN pip3 install --upgrade \
+#    https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.7.1-cp34-none-linux_x86_64.whl
 
 ENV user=spencertipping
 RUN useradd -ms /bin/bash $user -G adm,sudo \
