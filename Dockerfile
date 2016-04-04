@@ -15,12 +15,11 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
                           lzop zip unzip liblz4-tool \
                           python-pip python-scipy python3-pip python3-scipy \
                           python-sklearn vowpal-wabbit \
-                          build-essential openvpn \
-                          ffmpeg audacity gimp \
-                          vim emacs conky firefox \
-                          build-essential
+                          build-essential openvpn vim
 
 RUN apt-get install -y wamerican maven blender \
+                       ffmpeg audacity gimp \
+                       emacs conky firefox \
                        thrift-compiler python-thrift \
                        protobuf-compiler python-protobuf
 
