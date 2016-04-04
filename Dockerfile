@@ -1,31 +1,28 @@
 FROM ubuntu:16.04
 
-RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
-    && apt-get update
-
 # Prevent the keyboard-configuration package setup from blocking the apt-get
 # install below
 ADD etc-keyboard /etc/default/keyboard
 
-# This is a separate command so the above image can be cached. Not the most
-# elegant solution, but otherwise it takes a long time to test.
-RUN apt-get install -y tmux xpra htop atop git openssh-server \
-                       gnuplot octave ruby python3 perl pdl jq r-base \
-                       sshfs archivemount encfs \
-                       pv reptyr rlwrap units \
-                       ffmpeg audacity gimp \
-                       vim emacs conky firefox \
-                       build-essential
+RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
+    && apt-get update \
+    && apt-get install -y tmux xpra htop atop git openssh-server parallel \
+                          sudo squashfs-tools aufs-tools nfs-common \
+                          gnuplot gnuplot5-qt octave ruby python3 perl pdl jq \
+                          r-base \
+                          sshfs archivemount encfs lftp lsof \
+                          pv reptyr rlwrap units curl \
+                          lzop zip unzip liblz4-tool \
+                          python-pip python-scipy python3-pip python3-scipy \
+                          python-sklearn vowpal-wabbit \
+                          build-essential openvpn \
+                          ffmpeg audacity gimp \
+                          vim emacs conky firefox \
+                          build-essential
 
-RUN bash -c \
-    'apt-get install -y lzop sudo zip unzip liblz4-tool gnuplot5-qt curl \
-                        wamerican parallel openvpn nfs-common \
-                        python{,3}-{pip,scipy,numexpr} python-sklearn \
-                        lftp maven blender'
-
-RUN apt-get install -y thrift-compiler python-thrift \
-                       protobuf-compiler python-protobuf \
-                       lsof squashfs-tools aufs-tools
+RUN apt-get install -y wamerican maven blender \
+                       thrift-compiler python-thrift \
+                       protobuf-compiler python-protobuf
 
 # This fails to install on 16.04
 #RUN pip3 install --upgrade \
