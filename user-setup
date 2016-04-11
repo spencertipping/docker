@@ -11,7 +11,7 @@ clone() {
 
 mkdir -p ~/r/initiative
 clone bashrc-tmux bash-hats bash-lambda bash-prompt cd \
-      dotfiles nfu ni perl-objects quickdupe zerovpn
+      dotfiles motley nfu ni perl-objects quickdupe zerovpn
 
 git clone git://github.com/syl20bnr/spacemacs.git ~/.emacs.d
 
@@ -20,6 +20,12 @@ rm ~/.bashrc
 for file in ~/r/initiative/dotfiles/*; do
   ln -s ${file#$HOME/} ~/.${file##*/}
 done
+
+# Setup for motley conf management
+echo '# MOTLEYGEN' > ~/.ssh/config.motley
+echo '# MOTLEYGEN' > ~/.bash_aliases.motley
+
+~/r/initiative/motley/motley -f /mnt/conf/resources conf
 
 # Create a bin dir, just for good measure
 mkdir ~/bin
