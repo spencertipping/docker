@@ -5,27 +5,25 @@ mv ~/authorized_keys ~/.ssh/
 # Some git repositories I tend to use
 clone() {
   for r; do
-    git clone git://github.com/spencertipping/$r ~/r/initiative/$r
+    git clone git://github.com/spencertipping/$r ~/$r
   done
 }
 
-mkdir -p ~/r/initiative
+mkdir -p ~/r
 clone bashrc-tmux bash-hats bash-lambda bash-prompt cd \
       dotfiles motley nfu ni perl-objects quickdupe zerovpn
 
 git clone git://github.com/syl20bnr/spacemacs.git ~/.emacs.d
+git clone http://xiphosuran:8180/infrastructure/resources ~/resources
 
 # Initialize dotfiles
-rm ~/.bashrc
-for file in ~/r/initiative/dotfiles/*; do
-  ln -s ${file#$HOME/} ~/.${file##*/}
-done
+~/dotfiles/setup yes-really
 
 # Setup for motley conf management
 echo '# MOTLEYGEN' > ~/.ssh/config.motley
 echo '# MOTLEYGEN' > ~/.bash_aliases.motley
 
-~/r/initiative/motley/motley -f /mnt/conf/resources/Motfile conf
+~/motley/motley -f ~/resources/Motfile conf
 
 # Create a bin dir, just for good measure
 mkdir ~/bin
