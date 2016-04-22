@@ -1,0 +1,5 @@
+#!/bin/bash
+for repo in $(<repositories); do
+  curl "https://api.github.com/repos/spencertipping/$repo/branches/master" \
+    | jq -r .commit.sha
+done > git-versions

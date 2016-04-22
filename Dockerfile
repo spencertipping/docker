@@ -35,7 +35,7 @@ RUN useradd -ms /bin/bash $user -G adm,sudo \
     && echo "%sudo ALL=NOPASSWD: ALL" >> /etc/sudoers \
     && mkdir /var/run/sshd
 
-ADD authorized_keys user-setup /home/$user/
+ADD authorized_keys user-setup repositories git-versions /home/$user/
 RUN chown $user:$user /home/$user/authorized_keys \
     && chmod 0700 /home/$user/authorized_keys
 

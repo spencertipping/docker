@@ -10,8 +10,7 @@ clone() {
 }
 
 mkdir -p ~/r
-clone bashrc-tmux bash-hats bash-lambda bash-prompt cd \
-      dotfiles motley nfu ni perl-objects quickdupe zerovpn
+clone $(<repositories)
 
 git clone git://github.com/syl20bnr/spacemacs.git ~/.emacs.d
 git clone http://xiphosuran:8180/infrastructure/resources ~/resources
