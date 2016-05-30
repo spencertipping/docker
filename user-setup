@@ -13,7 +13,7 @@ mkdir -p ~/r
 clone $(<repositories)
 
 git clone git://github.com/syl20bnr/spacemacs.git ~/.emacs.d
-git clone http://xiphosuran:8180/infrastructure/resources ~/resources
+git clone http://reykjavik:8180/infrastructure/resources ~/resources
 
 # Initialize dotfiles
 ~/dotfiles/setup yes-really
