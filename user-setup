@@ -19,10 +19,14 @@ git clone http://reykjavik:8180/infrastructure/resources ~/resources
 ~/dotfiles/setup yes-really
 
 # Setup for motley conf management
+mkdir ~/bin
+
 echo '# MOTLEYGEN' > ~/.ssh/config.motley
 echo '# MOTLEYGEN' > ~/.bash_aliases.motley
 
-~/motley/motley -f ~/resources/Motfile conf
-
-# Create a bin dir, just for good measure
-mkdir ~/bin
+cat >> ~/.bashrc <<'EOF'
+if ! [[ -e ~/.motley-init-done ]]; then
+  ~/motley/motley -f ~/resources/Motfile conf
+  touch ~/.motley-init-done
+fi
+EOF
