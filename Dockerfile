@@ -21,7 +21,8 @@ RUN apt-get install -y wamerican maven blender \
                        ffmpeg audacity gimp \
                        emacs conky firefox \
                        thrift-compiler python-thrift \
-                       protobuf-compiler python-protobuf
+                       protobuf-compiler python-protobuf \
+                       octave-image octave-parallel
 
 # This fails to install on 16.04
 #RUN pip3 install --upgrade \
