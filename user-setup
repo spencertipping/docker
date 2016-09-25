@@ -24,3 +24,5 @@ if ! [[ -e ~/.motley-init-done ]]; then
   touch ~/.motley-init-done
 fi
 EOF
+
+. ~/.bash/init
