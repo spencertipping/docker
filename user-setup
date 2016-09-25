@@ -2,17 +2,9 @@
 mkdir -p ~/.ssh
 mv ~/authorized_keys ~/.ssh/
 
-# Some git repositories I tend to use
-clone() {
-  for r; do
-    git clone git://github.com/spencertipping/$r ~/$r
-  done
-}
-
-mkdir -p ~/r
-clone $(<repositories)
-
-git clone git://github.com/syl20bnr/spacemacs.git ~/.emacs.d
+git clone git://github.com/spencertipping/dotbash ~/.bash
+git clone git://github.com/spencertipping/dotfiles ~/dotfiles
+git clone http://reykjavik:8180/spencertipping/motley ~/motley
 git clone http://reykjavik:8180/infrastructure/resources ~/resources
 
 # Initialize dotfiles
@@ -25,6 +17,8 @@ echo '# MOTLEYGEN' > ~/.ssh/config.motley
 echo '# MOTLEYGEN' > ~/.bash_aliases.motley
 
 cat >> ~/.bashrc <<'EOF'
+. ~/.bash/init
+
 if ! [[ -e ~/.motley-init-done ]]; then
   ~/motley/motley -f ~/resources/Motfile conf
   touch ~/.motley-init-done
