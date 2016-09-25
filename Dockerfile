@@ -6,25 +6,14 @@ ADD etc-keyboard /etc/default/keyboard
 
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && apt-get update \
-    && apt-get install -y tmux xpra htop atop git openssh-server parallel \
-                          sudo squashfs-tools aufs-tools nfs-common \
-                          gnuplot gnuplot5-qt octave ruby python3 perl pdl jq \
-                          r-base \
-                          sshfs archivemount encfs lftp lsof \
-                          pv reptyr rlwrap units curl \
+    && apt-get install -y tmux xpra htop atop git openssh-server sudo \
+                          octave ruby python3 perl jq \
+                          pv units curl \
                           lzop zip unzip liblz4-tool \
                           python-pip python-scipy python3-pip python3-scipy \
-                          python-sklearn vowpal-wabbit \
-                          build-essential openvpn vim
-
-RUN apt-get install -y wamerican maven blender \
-                       ffmpeg audacity gimp \
-                       emacs conky firefox \
-                       thrift-compiler python-thrift \
-                       protobuf-compiler python-protobuf \
-                       octave-image octave-parallel
-
-RUN apt-get install -y docker.io
+                          python-sklearn build-essential vim \
+                          wamerican docker.io \
+                          ffmpeg octave-image octave-parallel
 
 # This fails to install on 16.04
 #RUN pip3 install --upgrade \
