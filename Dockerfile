@@ -13,7 +13,8 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
                           python-pip python-scipy python3-pip python3-scipy \
                           python-sklearn build-essential vim \
                           wamerican docker.io \
-                          ffmpeg octave-image octave-parallel
+                          ffmpeg octave-image octave-parallel \
+                          chromium-browser
 
 # This fails to install on 16.04
 #RUN pip3 install --upgrade \
