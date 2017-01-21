@@ -1,24 +1,21 @@
-FROM ubuntu:16.04
+FROM gentoo-local
 
-# Prevent the keyboard-configuration package setup from blocking the apt-get
-# install below
-ADD etc-keyboard /etc/default/keyboard
+ENV packages tmux xpra htop atop git openssh sudo \
+             octave ruby python3 perl jq \
+             pv units curl \
+             lzop zip unzip lz4 \
+             dev-python/pip scipy \
+             vim \
+             app-emulation/docker \
+             sshfs encfs archivemount \
+             ffmpeg chromium-browser
 
-RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
-    && apt-get update \
-    && apt-get install -y tmux xpra htop atop git openssh-server sudo \
-                          octave ruby python3 perl jq \
-                          pv units curl \
-                          lzop zip unzip liblz4-tool \
-                          python-pip python-scipy python3-pip python3-scipy \
-                          python-sklearn build-essential vim \
-                          wamerican docker.io \
-                          ffmpeg octave-image octave-parallel \
-                          chromium-browser
-
-# This fails to install on 16.04
-#RUN pip3 install --upgrade \
-#    https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.7.1-cp34-none-linux_x86_64.whl
+RUN echo 'CONFIG_PROTECT="-*"' >> /etc/portage/make.conf \
+ && sed -ri '/^CPU_FLAGS/ {s/"$/ mmxext"/}' /etc/portage/make.conf \
+ && sh -c 'emerge --autounmask y \
+                  --ask n \
+                  --autounmask-write y $packages;
+           emerge $packages'
 
 RUN echo user_allow_other >> /etc/fuse.conf
 
