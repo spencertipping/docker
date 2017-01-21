@@ -3,7 +3,7 @@ FROM gentoo-local
 ENV packages tmux xpra htop atop dev-vcs/git openssh sudo \
              octave ruby python3 perl jq \
              pv units net-misc/curl \
-             lzop zip unzip lz4 \
+             lzop zip unzip app-arch/lz4 \
              dev-python/pip scipy \
              vim \
              app-emulation/docker \
