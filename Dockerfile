@@ -23,7 +23,9 @@ RUN echo user_allow_other >> /etc/fuse.conf \
  && useradd -ms /bin/bash $user -G adm \
  && echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config \
  && echo "%adm ALL=NOPASSWD: ALL" >> /etc/sudoers \
- && mkdir /var/run/sshd
+ && mkdir /var/run/sshd \
+ && /usr/bin/ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N "" \
+ && /usr/bin/ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ""
 
 ADD authorized_keys user-setup repositories git-versions /home/$user/
 RUN chown $user:$user /home/$user/authorized_keys \
