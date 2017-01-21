@@ -1,6 +1,6 @@
 FROM gentoo-local
 
-ENV packages tmux xpra htop atop git openssh sudo \
+ENV packages tmux xpra htop atop dev-vcs/git openssh sudo \
              octave ruby python3 perl jq \
              pv units curl \
              lzop zip unzip lz4 \
