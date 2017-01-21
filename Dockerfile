@@ -20,9 +20,9 @@ RUN echo 'CONFIG_PROTECT="-*"' >> /etc/portage/make.conf \
 RUN echo user_allow_other >> /etc/fuse.conf
 
 ENV user=spencertipping
-RUN useradd -ms /bin/bash $user -G adm,sudo \
+RUN useradd -ms /bin/bash $user -G adm \
     && echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config \
-    && echo "%sudo ALL=NOPASSWD: ALL" >> /etc/sudoers \
+    && echo "%adm ALL=NOPASSWD: ALL" >> /etc/sudoers \
     && mkdir /var/run/sshd
 
 ADD authorized_keys user-setup repositories git-versions /home/$user/
