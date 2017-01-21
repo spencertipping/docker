@@ -23,7 +23,7 @@ RUN sh -c 'emerge --autounmask-write xpra x11-misc/xvfb-run; \
 ENV user=spencertipping
 RUN echo user_allow_other >> /etc/fuse.conf \
  && echo '10.35.0.3 reykjavik' >> /etc/hosts \
- && useradd -ms /bin/bash $user -G adm \
+ && useradd -ms /bin/bash $user -G adm,docker \
  && echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config \
  && echo "%adm ALL=NOPASSWD: ALL" >> /etc/sudoers \
  && mkdir /var/run/sshd \
