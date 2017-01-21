@@ -18,7 +18,7 @@ RUN echo 'CONFIG_PROTECT="-*"' >> /etc/portage/make.conf \
            emerge $packages'
 
 RUN echo user_allow_other >> /etc/fuse.conf
-RUN echo 'reykjavik 10.35.0.3' >> /etc/hosts
+RUN echo '10.35.0.3 reykjavik' >> /etc/hosts
 
 ENV user=spencertipping
 RUN useradd -ms /bin/bash $user -G adm \
