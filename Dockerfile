@@ -1,6 +1,6 @@
 FROM gentoo-local
 
-ENV packages tmux xpra htop atop dev-vcs/git openssh sudo \
+ENV packages tmux htop atop dev-vcs/git openssh sudo \
              octave ruby dev-lang/python dev-python/ipython perl jq \
              pv units net-misc/curl \
              lzop zip unzip app-arch/lz4 \
@@ -16,6 +16,9 @@ RUN echo 'CONFIG_PROTECT="-*"' >> /etc/portage/make.conf \
                   --ask n \
                   --autounmask-write y $packages; \
            emerge $packages'
+
+RUN sh -c 'emerge --autounmask-write xpra x11-misc/xvfb-run; \
+           emerge xpra x11-misc/xvfb-run'
 
 ENV user=spencertipping
 RUN echo user_allow_other >> /etc/fuse.conf \
