@@ -14,7 +14,7 @@ RUN echo 'CONFIG_PROTECT="-*"' >> /etc/portage/make.conf \
  && sed -ri '/^CPU_FLAGS/ {s/"$/ mmxext"/}' /etc/portage/make.conf \
  && sh -c 'emerge --autounmask y \
                   --ask n \
-                  --autounmask-write y $packages;
+                  --autounmask-write y $packages; \
            emerge $packages'
 
 RUN echo user_allow_other >> /etc/fuse.conf
