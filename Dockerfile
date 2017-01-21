@@ -8,7 +8,7 @@ ENV packages tmux xpra htop atop dev-vcs/git openssh sudo \
              vim \
              app-emulation/docker \
              sshfs encfs archivemount \
-             ffmpeg chromium-browser
+             ffmpeg chromium
 
 RUN echo 'CONFIG_PROTECT="-*"' >> /etc/portage/make.conf \
  && sed -ri '/^CPU_FLAGS/ {s/"$/ mmxext"/}' /etc/portage/make.conf \
