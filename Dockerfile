@@ -16,9 +16,7 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
                           ffmpeg octave-image octave-parallel \
                           chromium-browser darktable audacity
 
-# This fails to install on 16.04
-#RUN pip3 install --upgrade \
-#    https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.7.1-cp34-none-linux_x86_64.whl
+RUN pip install tensorflow
 
 RUN echo user_allow_other >> /etc/fuse.conf
 
