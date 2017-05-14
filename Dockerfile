@@ -9,7 +9,7 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && apt-get install -y tmux xpra htop atop git openssh-server sudo \
                           octave ruby python3 perl jq gnuplot5 \
                           pv units curl \
-                          lzop zip unzip liblz4-tool zpaq lrzip \
+                          lzop pbzip2 zip unzip liblz4-tool zpaq lrzip \
                           python-pip python-scipy python3-pip python3-scipy \
                           python-sklearn build-essential vim \
                           wamerican docker.io \
