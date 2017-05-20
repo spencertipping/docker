@@ -6,15 +6,14 @@ ADD etc-keyboard /etc/default/keyboard
 
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && apt-get update \
-    && apt-get install -y tmux xpra htop atop git openssh-server sudo \
-                          octave ruby python3 perl jq gnuplot5 \
-                          pv units curl \
-                          lzop pbzip2 zip unzip liblz4-tool zpaq lrzip \
-                          python-pip python-scipy python3-pip python3-scipy \
-                          python-sklearn build-essential vim \
-                          wamerican docker.io \
-                          ffmpeg octave-image octave-parallel \
-                          chromium-browser darktable audacity
+    && apt-get install -y \
+         tmux xpra htop atop git openssh-server sudo \
+         octave ruby python3 perl jq gnuplot5 pdl libdevel-repl-perl \
+         pv units curl \
+         lzop pbzip2 zip unzip liblz4-tool zpaq lrzip \
+         python-pip python-scipy python3-pip python3-scipy \
+         ffmpeg octave-image octave-parallel \
+         chromium-browser darktable audacity
 
 RUN pip install tensorflow
 
