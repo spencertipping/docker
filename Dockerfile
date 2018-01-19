@@ -13,6 +13,9 @@ RUN echo deb https://packagecloud.io/github/git-lfs/ubuntu/ xenial main \
  && echo deb-src https://packagecloud.io/github/git-lfs/ubuntu/ xenial main \
       >> /etc/apt/sources.list
 
+# Unauthenticated is OK here because we're on HTTPS
+RUN apt-get install -y --allow-unauthenticated git-lfs
+
 RUN apt-get update \
     && apt-get install -y \
          tmux xpra htop atop git openssh-server sudo \
@@ -21,8 +24,7 @@ RUN apt-get update \
          lzop pbzip2 zip unzip liblz4-tool zpaq lrzip \
          python-pip python-scipy python3-pip python3-scipy \
          ffmpeg octave-image octave-parallel \
-         chromium-browser darktable audacity \
-         git-lfs
+         chromium-browser darktable audacity
 
 RUN pip install tensorflow
 
