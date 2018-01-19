@@ -18,7 +18,7 @@ RUN apt-get update \
  && apt-get install -y --allow-unauthenticated git-lfs
 
 RUN apt-get install -y \
-      tmux xpra htop atop git openssh-server sudo \
+      tmux xpra htop atop git openssh-server sudo man \
       octave ruby python3 perl jq gnuplot5 pdl libdevel-repl-perl \
       pv units curl \
       lzop pbzip2 zip unzip liblz4-tool zpaq lrzip \
