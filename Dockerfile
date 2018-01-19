@@ -4,6 +4,11 @@ FROM ubuntu:16.04
 # install below
 ADD etc-keyboard /etc/default/keyboard
 
+RUN echo deb https://packagecloud.io/github/git-lfs/ubuntu/ xenial main \
+      >> /etc/apt/sources.list \
+ && echo deb-src https://packagecloud.io/github/git-lfs/ubuntu/ xenial main \
+      >> /etc/apt/sources.list
+
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y \
@@ -13,7 +18,8 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
          lzop pbzip2 zip unzip liblz4-tool zpaq lrzip \
          python-pip python-scipy python3-pip python3-scipy \
          ffmpeg octave-image octave-parallel \
-         chromium-browser darktable audacity
+         chromium-browser darktable audacity \
+         git-lfs
 
 RUN pip install tensorflow
 
