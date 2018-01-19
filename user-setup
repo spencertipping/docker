@@ -2,17 +2,20 @@
 mkdir -p ~/.ssh
 mv ~/authorized_keys ~/.ssh/
 
-git clone git://github.com/spencertipping/dotbash ~/.bash
-git clone git://github.com/spencertipping/dotfiles ~/dotfiles
-git clone http://10.35.0.3:8180/spencertipping/motley ~/motley
-git clone http://10.35.0.3:8180/infrastructure/resources ~/resources
+git clone https://github.com/spencertipping/dotbash ~/.bash
+git clone https://github.com/spencertipping/dotfiles ~/dotfiles
+
+# These fail for some reason
+#git clone http://10.35.0.3:8180/spencertipping/motley ~/motley
+#git clone http://10.35.0.3:8180/infrastructure/resources ~/resources
 
 # Initialize dotfiles
 ~/dotfiles/setup yes-really
 
 # Setup for motley conf management
-mkdir ~/bin
+mkdir -p ~/bin
 
+if false; then
 echo '# MOTLEYGEN' > ~/.ssh/config.motley
 echo '# MOTLEYGEN' > ~/.bash_aliases.motley
 
@@ -24,5 +27,6 @@ if ! [[ -e ~/.motley-init-done ]]; then
   touch ~/.motley-init-done
 fi
 EOF
+fi
 
 . ~/.bash/init
