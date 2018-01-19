@@ -4,13 +4,16 @@ FROM ubuntu:16.04
 # install below
 ADD etc-keyboard /etc/default/keyboard
 
+RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
+    && apt-get update \
+    && apt-get install -y apt-transport-https
+
 RUN echo deb https://packagecloud.io/github/git-lfs/ubuntu/ xenial main \
       >> /etc/apt/sources.list \
  && echo deb-src https://packagecloud.io/github/git-lfs/ubuntu/ xenial main \
       >> /etc/apt/sources.list
 
-RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
-    && apt-get update \
+RUN apt-get update \
     && apt-get install -y \
          tmux xpra htop atop git openssh-server sudo \
          octave ruby python3 perl jq gnuplot5 pdl libdevel-repl-perl \
