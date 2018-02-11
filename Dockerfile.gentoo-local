@@ -1,0 +1,9 @@
+FROM gentoo/portage:latest as portage
+FROM gentoo/stage3-amd64:latest
+
+COPY --from=portage /usr/portage /usr/portage
+
+RUN echo 'CONFIG_PROTECT="-*"' >> /etc/portage/make.conf \
+ && sed -ri '/^CPU_FLAGS_X86=/ {s/"$/ mmxext sse3"/}' /etc/portage/make.conf
+
+RUN emerge --sync

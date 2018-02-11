@@ -1,0 +1,5 @@
+#!/bin/bash
+# TODO
+
+docker create -v /usr/portage --name portage gentoo/portage:latest /bin/true
+docker run --volumes-from portage gentoo/stage3-amd64:latest /bin/bash
