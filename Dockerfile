@@ -21,7 +21,7 @@ RUN apt-get install -y \
       tmux xpra htop atop git openssh-server sudo man vim \
       octave ruby python3 perl jq gnuplot5 pdl libdevel-repl-perl \
       pv units curl \
-      lzop pbzip2 zip unzip liblz4-tool zpaq lrzip \
+      lzop pbzip2 zip unzip liblz4-tool zpaq lrzip p7zip-full \
       python-pip python-scipy python3-pip python3-scipy \
       ffmpeg octave-image octave-parallel \
       chromium-browser darktable audacity
