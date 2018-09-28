@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 # Prevent the keyboard-configuration package setup from blocking the apt-get
 # install below
