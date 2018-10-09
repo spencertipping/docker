@@ -32,7 +32,7 @@ RUN pip install platformio
 
 RUN echo user_allow_other >> /etc/fuse.conf
 
-ENV user=spencertipping
+ARG user=spencertipping
 RUN useradd -ms /bin/bash $user -G adm,sudo \
  && echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config \
  && echo "%sudo ALL=NOPASSWD: ALL" >> /etc/sudoers \

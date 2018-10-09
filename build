@@ -1,0 +1,8 @@
+#!/bin/bash
+docker build                     -t spencertipping/machine .
+docker build --build-arg user=me -t spencertipping/guest-machine .
+
+if [[ "$USER" == spencertipping ]]; then
+  docker push spencertipping/machine
+  docker push spencertipping/guest-machine
+fi
