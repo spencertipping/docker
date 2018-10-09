@@ -49,8 +49,10 @@ RUN bash user-setup
 EXPOSE 22
 VOLUME /mnt
 
-ADD generate-host-keys /usr/sbin/
+ADD generate-host-keys fix-dev-shm /usr/sbin/
 
 USER root
 WORKDIR /
-CMD /usr/sbin/generate-host-keys && /usr/sbin/sshd -D
+CMD /usr/sbin/generate-host-keys \
+ && /usr/sbin/fix-dev-shm \
+ && /usr/sbin/sshd -D
