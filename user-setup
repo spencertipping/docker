@@ -4,12 +4,7 @@ mv ~/authorized_keys ~/.ssh/
 
 [[ -d ~/r ]] || ln -s /mnt/v1/st ~/r
 
-git clone https://github.com/spencertipping/dotbash ~/.bash
 git clone https://github.com/spencertipping/dotfiles ~/dotfiles
-
-# These fail for some reason
-#git clone http://10.35.0.3:8180/spencertipping/motley ~/motley
-#git clone http://10.35.0.3:8180/infrastructure/resources ~/resources
 
 # Initialize dotfiles
 ~/dotfiles/setup yes-really
@@ -17,18 +12,4 @@ git clone https://github.com/spencertipping/dotfiles ~/dotfiles
 # Setup for motley conf management
 mkdir -p ~/bin
 
-if false; then
-echo '# MOTLEYGEN' > ~/.ssh/config.motley
-echo '# MOTLEYGEN' > ~/.bash_aliases.motley
-
-cat >> ~/.bashrc <<'EOF'
-. ~/.bash/init
-
-if ! [[ -e ~/.motley-init-done ]]; then
-  ~/motley/motley -f ~/resources/Motfile conf
-  touch ~/.motley-init-done
-fi
-EOF
-fi
-
-. ~/.bash/init
+source ~/.bashrc

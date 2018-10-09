@@ -4,29 +4,31 @@ FROM ubuntu:18.04
 # install below
 ADD etc-keyboard /etc/default/keyboard
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
-    && apt-get update \
-    && apt-get install -y apt-transport-https
+ && apt-get update
 
-RUN echo deb https://packagecloud.io/github/git-lfs/ubuntu/ xenial main \
-      >> /etc/apt/sources.list \
- && echo deb-src https://packagecloud.io/github/git-lfs/ubuntu/ xenial main \
-      >> /etc/apt/sources.list
-
-# Unauthenticated is OK here because we're on HTTPS
-RUN apt-get update \
- && apt-get install -y --allow-unauthenticated git-lfs
+# Install SSH server, but delete the keys and instead use a volume mounted later
+# on. This way I'm not pushing server keys into dockerhub.
+VOLUME /ssh-host-keys
+RUN apt-get install -y openssh-server \
+ && rm -f /etc/ssh/ssh_host_*_key \
+ && ln -s /ssh-host-keys/ssh_host_rsa_key /etc/ssh/ \
+ && ln -s /ssh-host-keys/ssh_host_dsa_key /etc/ssh/ \
+ && ln -s /ssh-host-keys/ssh_host_ed25519_key /etc/ssh/
 
 RUN apt-get install -y \
-      tmux xpra htop atop git openssh-server sudo man vim \
+      tmux xpra htop atop git sudo man vim \
       octave ruby python3 perl jq gnuplot5 pdl libdevel-repl-perl \
       pv units curl \
       lzop pbzip2 zip unzip liblz4-tool zpaq lrzip p7zip-full \
       python-pip python-scipy python3-pip python3-scipy \
       ffmpeg octave-image octave-parallel \
-      chromium-browser darktable audacity
+      chromium-browser darktable audacity git-lfs
 
 RUN pip install tensorflow
+RUN pip install platformio
 
 RUN echo user_allow_other >> /etc/fuse.conf
 
@@ -42,11 +44,13 @@ RUN chown $user:$user /home/$user/authorized_keys \
 
 USER $user
 WORKDIR /home/$user
-RUN ./user-setup
+RUN bash user-setup
 
 EXPOSE 22
 VOLUME /mnt
 
+ADD generate-host-keys /usr/sbin/
+
 USER root
 WORKDIR /
-CMD ["/usr/sbin/sshd", "-D"]
+CMD /usr/sbin/generate-host-keys && /usr/sbin/sshd -D

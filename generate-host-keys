@@ -1,0 +1,4 @@
+#!/bin/bash
+[[ -f /ssh-host-keys/ssh_host_rsa_key ]]     || ssh-keygen -f /ssh-host-keys/ssh_host_rsa_key -N '' -t rsa
+[[ -f /ssh-host-keys/ssh_host_dsa_key ]]     || ssh-keygen -f /ssh-host-keys/ssh_host_dsa_key -N '' -t dsa
+[[ -f /ssh-host-keys/ssh_host_ec25519_key ]] || ssh-keygen -f /ssh-host-keys/ssh_host_ec25519_key -N '' -t ed25519
