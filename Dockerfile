@@ -19,7 +19,7 @@ RUN apt-get install -y openssh-server \
  && ln -s /ssh-host-keys/ssh_host_ed25519_key /etc/ssh/
 
 RUN apt-get install -y \
-      tmux xpra htop atop git sudo man vim \
+      tmux xpra htop atop git sudo man vim rsync \
       octave ruby python3 perl jq gnuplot5 pdl libdevel-repl-perl \
       pv units curl \
       lzop pbzip2 zip unzip liblz4-tool zpaq lrzip p7zip-full \
