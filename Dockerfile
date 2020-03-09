@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:19.10
 
 VOLUME /ssh-host-keys
 
@@ -14,20 +14,25 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
       vim-gtk apt-transport-https git git-lfs \
       nmap openvpn sshuttle pv socat \
       sshfs encfs archivemount nfs-client squashfs-tools \
-      xzip zip unzip lzop liblz4-tool pbzip2 zpaq lrzip p7zip-full \
-      chromium-browser \
+      xzip zip unzip lzop liblz4-tool pbzip2 zpaq lrzip p7zip-full zstd \
       xsel \
       ffmpeg imagemagick feh blender gimp darktable \
       audacity vorbisgain \
-      tmux xpra htop atop curl \
+      tmux htop atop curl \
       ruby python python3 perl jq ocaml perl-doc ascii dict \
       libdevel-repl-perl pdl \
       curl python3-scipy python-pip python3-pip octave gnuplot \
       docker.io
 
+RUN curl -sS https://xpra.org/gpg.asc | apt-key add - \
+ && apt install -y software-properties-common \
+ && yes | add-apt-repository "deb https://xpra.org/ eoan main"
+
 RUN pip3 install tensorflow \
  && pip  install platformio \
  && echo user_allow_other >> /etc/fuse.conf
+
+RUN curl -sSL https://get.haskellstack.org/ | sh
 
 # Install SSH server, but delete the keys and instead use a volume mounted later
 # on. This way I'm not pushing server keys into dockerhub.
