@@ -5,6 +5,7 @@ mv ~/authorized_keys ~/.ssh/
 [[ -d ~/r ]] || ln -s /mnt/v1/st ~/r
 
 git clone https://github.com/spencertipping/dotfiles ~/dotfiles
+git clone https://github.com/spencertipping/dotbash ~/.bash
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 # Initialize dotfiles
@@ -14,3 +15,4 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 mkdir -p ~/bin
 
 source ~/.bashrc
+source ~/.bash/init
