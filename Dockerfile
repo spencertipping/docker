@@ -12,17 +12,14 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
  && apt-get update \
  && apt-get install -y \
       vim-gtk apt-transport-https git git-lfs \
-      nmap openvpn sshuttle pv socat \
+      nmap openvpn sshuttle pv socat iputils-ping dnsutils \
       sshfs encfs archivemount nfs-client squashfs-tools \
       xzip zip unzip lzop liblz4-tool pbzip2 zpaq lrzip p7zip-full zstd \
-      xsel \
-      ffmpeg imagemagick feh blender gimp darktable \
-      audacity vorbisgain \
+      xsel emacs \
+      ffmpeg imagemagick \
       tmux htop atop curl \
       ruby python python3 perl jq ocaml perl-doc ascii dict \
-      libdevel-repl-perl pdl \
-      curl python3-scipy python-pip python3-pip octave gnuplot \
-      docker.io
+      python3-scipy python-pip python3-pip octave gnuplot
 
 RUN curl -sS https://xpra.org/gpg.asc | apt-key add - \
  && apt install -y software-properties-common \
