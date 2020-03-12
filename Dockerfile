@@ -11,19 +11,24 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
  && apt-get update \
  && apt-get install -y \
-      vim-gtk apt-transport-https git git-lfs \
-      nmap openvpn sshuttle pv socat iputils-ping dnsutils \
-      sshfs encfs archivemount nfs-client squashfs-tools \
-      xzip zip unzip lzop liblz4-tool pbzip2 zpaq lrzip p7zip-full zstd \
-      xsel emacs \
-      ffmpeg imagemagick \
-      tmux htop atop curl \
-      ruby python python3 perl jq ocaml perl-doc ascii dict \
-      python3-scipy python-pip python3-pip octave gnuplot
+        rsync build-essential \
+        man manpages manpages-posix manpages-dev \
+        tmux htop atop iotop curl \
+        vim apt-transport-https git git-lfs \
+        nmap sshuttle pv netcat-traditional socat iputils-ping dnsutils \
+        xzip zip unzip unrar-free lzop liblz4-tool pbzip2 pigz zpaq lrzip \
+        p7zip-full zstd \
+        emacs ttf-ubuntu-font-family \
+        ffmpeg imagemagick \
+        python3 perl jq perl-doc ascii \
+        python3-scipy python-pip python3-pip \
+        gnuplot-nox
 
-RUN curl -sS https://xpra.org/gpg.asc | apt-key add - \
- && apt install -y software-properties-common \
- && yes | add-apt-repository "deb https://xpra.org/ eoan main"
+# xpra has been unreliable lately, so just ssh -X for now.
+#RUN curl -sS https://xpra.org/gpg.asc | apt-key add - \
+# && apt install -y software-properties-common \
+# && yes | add-apt-repository "deb https://xpra.org/ eoan main" \
+# && apt install -y xpra
 
 RUN pip3 install tensorflow \
  && pip  install platformio \
@@ -54,6 +59,9 @@ RUN chown $user:$user /home/$user/authorized_keys \
 USER $user
 WORKDIR /home/$user
 RUN bash user-setup
+RUN stack setup
+RUN emacs --batch --script ~/.emacs.d/init.el --kill \
+ && emacs --batch --script ~/.emacs.d/init.el --kill
 
 EXPOSE 22
 VOLUME /mnt
@@ -64,4 +72,4 @@ USER root
 WORKDIR /
 CMD /usr/sbin/generate-host-keys \
  && /usr/sbin/fix-dev-shm \
- && /usr/sbin/sshd -D
+ && exec /usr/sbin/sshd -D
